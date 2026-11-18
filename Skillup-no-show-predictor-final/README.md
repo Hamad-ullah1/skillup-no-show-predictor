@@ -99,7 +99,7 @@ Completed:
 - Basic security checks.
 - Project documentation.
 
-A prediction model will be developed in a later project stage.
+A majority-class baseline model has been developed. A trained machine-learning prediction model will be developed in a later project stage.
 
 ## How to Use in Google Colab
 
@@ -117,3 +117,50 @@ A prediction model will be developed in a later project stage.
 ## Disclaimer
 
 This is an educational machine learning preparation project. Its fictional dataset and assumed relationships are not real-world findings or a validated prediction service.
+
+
+## Task 2: Baseline Model
+
+### Purpose
+The baseline provides a simple reference score to compare with future machine-learning models. It uses a majority-class strategy and always predicts the most common attendance outcome.
+
+### Class Imbalance
+The synthetic dataset contains 500 appointments:
+- Showed up (1): 436 (87.2%)
+- No-show (0): 64 (12.8%)
+
+This dataset is imbalanced because the showed-up class is much larger than the no-show class.
+
+Accuracy alone can be misleading. A model that always predicts "showed up" can achieve high accuracy while failing to identify any no-shows.
+
+### Baseline Metrics
+- Full-dataset majority-class accuracy: 87.2%.
+- No-show recall: 0%.
+
+The baseline catches none of the actual no-shows. No-show recall is therefore important when evaluating future models.
+
+### How to Run the Baseline
+
+Run from the project root:
+
+    python src/baseline.py
+
+### Automated Tests
+
+The project includes 7 automated tests:
+
+- 4 data-preparation tests in `tests/test_data.py`.
+- 3 baseline tests in `tests/test_baseline.py`, covering normal evaluation, a missing `attended` column, and an empty dataframe.
+
+Run all tests from the project root:
+
+    python -m pytest -v tests
+
+### Install Dependencies
+
+Run:
+
+    pip install -r requirements.txt
+
+Note: This project uses synthetic sample data. These results do not represent actual SkillUp Academy attendance records.
+

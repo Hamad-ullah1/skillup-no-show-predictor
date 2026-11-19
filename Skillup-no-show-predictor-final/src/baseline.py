@@ -1,4 +1,3 @@
-
 import pandas as pd
 from pathlib import Path
 from sklearn.model_selection import train_test_split
@@ -7,6 +6,14 @@ from sklearn.metrics import accuracy_score, recall_score
 
 
 def evaluate_baseline(df):
+
+    # Validate input before accessing columns
+    if df.empty:
+        raise ValueError("Input dataframe is empty.")
+
+    if "attended" not in df.columns:
+        raise ValueError("Missing required column: 'attended'.")
+
     X = df.drop(columns=["attended"])
     y = df["attended"]
 
